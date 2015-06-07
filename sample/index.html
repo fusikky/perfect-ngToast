@@ -1,0 +1,70 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ngToast Test</title>
+  <link rel="stylesheet" href="../dist/index.css">
+</head>
+<body>
+<div ng-app="app">
+    <h1>ngToast</h1>
+      <div ng-controller="ngToastCtrl">
+        <button ng-click="openToast()">openToast</button>
+        <button ng-click="openNotice('Hello!','info')">openNotice</button>
+    </div>
+  </div>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../dist/ngtoast.js"></script>
+<script>
+  angular.module('app', ['ngToast']).controller('ngToastCtrl', ['$scope', '$rootScope', 'ngToast', function ($scope, $rootScope, ngToast) {
+    $scope.openToast = function () {
+      var scope = $rootScope.$new();
+      scope.text = 'Hover to Save Me!';
+      scope.mouseenter = function () {
+        scope.text = "Thanks! I won't close"
+      };
+      scope.mouseleave = function () {
+        scope.text = "Hover to Save Me!"
+      };
+
+      ngToast.open({
+        template: '<div class="ngtoast-default" ng-mouseover="mouseenter()", ng-mouseleave="mouseleave()">{{text}}</div>',
+        timeout: 4000,
+        scope: scope,
+        animClass: {
+          opening: 'ngtoast-opening',
+          open: 'ngtoast-open',
+          closing: 'ngtoast-closing'
+        },
+        hoverNotClose: true,
+        onlyOneToast: true,
+        clickToClose: false
+      }).closePromise.then(function(){
+        $scope.openNotice('toast was dead...', 'alert')
+      })
+    };
+    $scope.openNotice = function (text, className) {
+      var scope = $rootScope.$new();
+      scope.text = text;
+      ngToast.open({
+        template: '<div class="ngtoast-notice">Notice: {{text}}</div>',
+        timeout: 2000,
+        animClass: {
+          opening: 'ngtoast-info-opening',
+          open: 'ngtoast-info-open',
+          closing: 'ngtoast-info-closing'
+        },
+        className: className,
+        scope: scope,
+        hoverNotClose:false,
+        onlyOneToast: true,
+        clickToClose: false
+      });
+    };
+
+  }]);
+
+</script>
+
+
+</body>
+</html>

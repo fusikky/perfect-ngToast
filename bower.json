@@ -1,0 +1,19 @@
+{
+  "name": "angular-perfect-toast",
+  "version": "0.0.0",
+  "homepage": "https://github.com/fusikky/angular-perfect-toast",
+  "authors": [
+    "fusikky <fusikky@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0"
+  }
+}
