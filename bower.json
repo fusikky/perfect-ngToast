@@ -1,11 +1,16 @@
 {
-  "name": "angular-perfect-toast",
+  "name": "perfect-ngToast",
   "version": "0.0.0",
-  "homepage": "https://github.com/fusikky/angular-perfect-toast",
+  "homepage": "https://github.com/fusikky/perfect-ngToast",
   "authors": [
-    "fusikky <fusikky@gmail.com>"
+    "fusikky"
   ],
+  "main": "dist/ngToast.js",
   "license": "MIT",
+  "keywords": [
+    "angular.js",
+    "toast"
+  ],
   "ignore": [
     "**/.*",
     "node_modules",
