@@ -10,15 +10,12 @@
      */
 
     var $el = angular.element,
-      $toast = null,
-      $toastParent = null,
-      options = {};
+      options = {},
+      $body = $el(document.querySelector('body'));
 
-    var $body = $el(document.querySelector('body'));
-
-    const DEFAULT_TIMEOUT_MSEC = 1000;
-    const animationEndEvent = 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend';
-    const defaultOps = {
+    const DEFAULT_TIMEOUT_MSEC = 1000,
+      animationEndEvent = 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend',
+      defaultOps = {
        timeout: DEFAULT_TIMEOUT_MSEC, // ms default
        appendTo: null, // selector
        className: null, // classname to add for container
@@ -41,12 +38,16 @@
       }
 
       open(opts) {
-        var self = this;
-        var toastId = this.globalId++;
-        this.openToastIds.push(toastId);
-        var scope = {};
-        var closeDefer;
+        var self = this,
+          $toastParent = null,
+          $toast = null,
+          toastId = this.globalId++,
+          scope = {},
+          closeDefer,
+          closeTimeout = DEFAULT_TIMEOUT_MSEC;
+
         this.closeDefers[toastId] = closeDefer = $q.defer();
+        this.openToastIds.push(toastId);
 
         // Future Use for ES6
         // var promise = new Promise();
@@ -64,7 +65,6 @@
         // create template
         // TODO: use template url
         if (options.template && angular.isString(options.template)) {
-          // TODO: add container
           $toast = $el(options.template);
           $toast
           .addClass('ngtoast-container')
@@ -79,12 +79,11 @@
         // click to close
         if (options.clickToClose) {
           $toast.on('click', function () {
-            self.close(toastId);
+            self.close($toast);
           });
         }
 
         // set timeout for close
-        var closeTimeout = DEFAULT_TIMEOUT_MSEC;
         if (options.timeout && angular.isNumber(options.timeout)) {
           closeTimeout = options.timeout;
         }
@@ -100,7 +99,7 @@
 
         // auto close
         var timeoutPromise = $timeout(function () {
-          self.close(toastId);
+          self.close($toast);
         }, closeTimeout);
 
         // hoverNotClose
@@ -111,7 +110,7 @@
            })
           .on('mouseleave', function () {
              timeoutPromise = $timeout(function () {
-               self.close(toastId);
+               self.close($toast);
              }, closeTimeout);
            });
         }
@@ -122,29 +121,31 @@
         // open animation
         $timeout(function () {
           $toast.addClass(options.animClass.opening);
-          $rootScope.$broadcast('ngToast.opening');
+          $rootScope.$broadcast('ngToast.opening', toastId);
           $toast.unbind(animationEndEvent).bind(animationEndEvent, function () {
             $toast.removeClass(options.animClass.opening).addClass(options.animClass.open);
-            $rootScope.$broadcast('ngToast.opened');
+            $rootScope.$broadcast('ngToast.opened', toastId);
           });
         });
 
         return {
+          id: toastId,
           closePromise: closeDefer.promise
         }
       }
 
-      close(toastId) {
+      close($toast) {
         var self = this;
+        var toastId = parseInt($toast.attr('toast-id'));
         $toast.removeClass(options.animClass.open).addClass(options.animClass.closing);
-        $rootScope.$broadcast('ngToast.closing');
+        $rootScope.$broadcast('ngToast.closing', toastId);
         // perform close with animation
         $toast.unbind(animationEndEvent).bind(animationEndEvent, function () {
           self.scopes[toastId].$destroy();
           $toast.remove();
           var def = self.closeDefers[toastId];
           self.closeDefers[toastId].resolve();
-          $rootScope.$broadcast('ngToast.closed');
+          $rootScope.$broadcast('ngToast.closed', toastId);
         });
       }
     }
