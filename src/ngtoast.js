@@ -1,4 +1,4 @@
- angular.module('ngToast', []).factory('ngToast', [
+angular.module('ngToast', []).factory('ngToast', [
   '$rootScope',
   '$compile',
   '$timeout',
@@ -14,7 +14,7 @@
       $body = $el(document.querySelector('body'));
 
     const DEFAULT_TIMEOUT_MSEC = 1000,
-      animationEndEvent = 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend',
+      animationEndEvent = 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend transitionend webkitTransitionEnd mozTransitionEnd MSTransitionEnd  oTransitionEnd',
       defaultOps = {
        timeout: DEFAULT_TIMEOUT_MSEC, // ms default
        appendTo: null, // selector
@@ -122,11 +122,16 @@
         $timeout(function () {
           $toast.addClass(options.animClass.opening);
           $rootScope.$broadcast('ngToast.opening', toastId);
-          $toast.unbind(animationEndEvent).bind(animationEndEvent, function () {
+          $toast.unbind(animationEndEvent).bind(animationEndEvent, function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!$el(e.target).hasClass('ngtoast-container')) {
+              return
+            }
             $toast.removeClass(options.animClass.opening).addClass(options.animClass.open);
             $rootScope.$broadcast('ngToast.opened', toastId);
           });
-        });
+        }, 100);
 
         return {
           id: toastId,
@@ -140,7 +145,12 @@
         $toast.removeClass(options.animClass.open).addClass(options.animClass.closing);
         $rootScope.$broadcast('ngToast.closing', toastId);
         // perform close with animation
-        $toast.unbind(animationEndEvent).bind(animationEndEvent, function () {
+        $toast.unbind(animationEndEvent).bind(animationEndEvent, function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (!$el(e.target).hasClass('ngtoast-container')) {
+            return
+          }
           self.scopes[toastId].$destroy();
           $toast.remove();
           var def = self.closeDefers[toastId];
@@ -152,5 +162,3 @@
 
     return new ngToast();
 }]);
-
-
