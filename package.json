@@ -1,21 +1,21 @@
 {
-  "name": "angular-perfect-toast",
+  "name": "perfect-ngToast",
   "version": "0.0.0",
   "description": "",
-  "main": "gulpfile.js",
+  "main": "dist/ngToast.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fusikky/angular-perfect-toast.git"
+    "url": "https://github.com/fusikky/perfect-ngToast.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fusikky/angular-perfect-toast/issues"
+    "url": "https://github.com/fusikky/perfect-ngToast/issues"
   },
-  "homepage": "https://github.com/fusikky/angular-perfect-toast",
+  "homepage": "https://github.com/fusikky/perfect-ngToast",
   "dependencies": {
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
