@@ -1,7 +1,7 @@
 angular.module('ngToast', []).factory('ngToast', [
   '$rootScope',
   '$compile',
-  '$controller'
+  '$controller',
   '$timeout',
   '$q',
   function ($rootScope, $compile, $controller, $timeout, $q) {
@@ -67,7 +67,7 @@ angular.module('ngToast', []).factory('ngToast', [
         if (options.controller && (angular.isString(options.controller) || angular.isArray(options.controller) || angular.isFunction(options.controller))) {
           debugger
           let ctrl = options.controller;
-          let controllerInstance = $controller(ctrl, {})); 
+          let controllerInstance = $controller(ctrl, {$scope: scope}); 
         }
 
         // create template

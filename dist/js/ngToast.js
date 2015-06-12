@@ -4,7 +4,7 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$timeout', '$q', function ($rootScope, $compile, $timeout, $q) {
+angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$controller', '$timeout', '$q', function ($rootScope, $compile, $controller, $timeout, $q) {
 
   /** TODO:
    * options : html template get / plain
@@ -64,6 +64,13 @@ angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$ti
           this.scopes[toastId] = scope = options.scope;
         } else {
           this.scopes[toastId] = scope = $rootScope.$new();
+        }
+
+        // controller
+        if (options.controller && (angular.isString(options.controller) || angular.isArray(options.controller) || angular.isFunction(options.controller))) {
+          debugger;
+          var ctrl = options.controller;
+          var controllerInstance = $controller(ctrl, { $scope: scope });
         }
 
         // create template
