@@ -1,8 +1,9 @@
-<html>
-<head>
+<html> <head>
   <meta charset="utf-8">
   <title>ngToast Test</title>
-  <link rel="stylesheet" href="../dist/ngToast.css">
+  <link rel="stylesheet" href="../dist/css/ngToast.css">
+  <link rel="stylesheet" href="../dist/css/ngToast-anim-custom.css">
+  <link rel="stylesheet" href="../dist/css/sample.css">
 </head>
 <body>
 <div ng-app="app">
@@ -10,10 +11,11 @@
       <div ng-controller="ngToastCtrl">
         <button ng-click="openToast()">openToast</button>
         <button ng-click="openNotice('Hello!','info')">openNotice</button>
+        <button ng-click="openCtrl()">openCtrl</button>
     </div>
   </div>
 <script src="../bower_components/angular/angular.js"></script>
-<script src="../dist/ngToast.js"></script>
+<script src="../dist/js/ngToast.js"></script>
 <script>
   angular.module('app', ['ngToast']).controller('ngToastCtrl', ['$scope', '$rootScope', 'ngToast', function ($scope, $rootScope, ngToast) {
     $scope.openToast = function () {
@@ -60,6 +62,24 @@
         clickToClose: false
       });
     };
+    $scope.openCtrl = function () {
+      ngToast.open({
+        template: '<div class="ngtoast-notice">Notice: {{text}}</div>',
+        timeout: 2000,
+        animClass: {
+          opening: 'ngtoast-info-opening',
+          open: 'ngtoast-info-open',
+          closing: 'ngtoast-info-closing'
+        },
+        controller: ['$scope', function($scope) {
+          $scope.text = 'controller ok';
+       }],
+        hoverNotClose:false,
+        onlyOneToast: true,
+        clickToClose: false
+      });
+    };
+
 
   }]);
 

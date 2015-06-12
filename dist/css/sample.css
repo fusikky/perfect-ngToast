@@ -1,0 +1,59 @@
+.ngtoast-default {
+  background-color: #eff;
+  border: 1px solid #000;
+  color: #000;
+  width: 200px;
+  height: 50px;
+  position: fixed;
+  top: 150px;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  transform: translateY(high);
+  margin: auto;
+  border-radius: 10px;
+}
+.ngtoast-default:hover {
+  background-color: #cff;
+}
+.ngtoast-default.ngtoast-opening {
+  animation: ngtoast-flyin 0.5s;
+}
+.ngtoast-default.ngtoast-open {
+  transform: translateY(low);
+}
+.ngtoast-default.ngtoast-closing,
+.ngtoast-default transform translateY(low),
+.ngtoast-default animation ngtoast-fadeout 0.5s,
+.ngtoast-default .ngtoast-closing-flyout {
+  animation: ngtoast-flyout 0.5s;
+}
+.ngtoast-notice {
+  background-color: #3ff;
+  border: 1px solid #000;
+  color: #000;
+  width: 100px;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateY(low);
+  border-radius: 10px;
+  padding: 10px;
+}
+.ngtoast-info-opening {
+  animation: ngtoast-flyin-right 0.22s;
+}
+.ngtoast-info-open {
+  transform: translate(low, high);
+}
+.ngtoast-info-closing {
+  animation: ngtoast-flyout-top 0.5s;
+  transform: translateX(low);
+}
+.alert {
+  background-color: #f88;
+}
+.info {
+  background-color: #3ff;
+}

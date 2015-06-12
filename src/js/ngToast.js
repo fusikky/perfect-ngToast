@@ -1,9 +1,10 @@
 angular.module('ngToast', []).factory('ngToast', [
   '$rootScope',
   '$compile',
+  '$controller'
   '$timeout',
   '$q',
-  function ($rootScope, $compile, $timeout, $q) {
+  function ($rootScope, $compile, $controller, $timeout, $q) {
 
     /** TODO:
      * options : html template get / plain
@@ -55,11 +56,18 @@ angular.module('ngToast', []).factory('ngToast', [
         // extend options
         options = angular.extend({}, defaultOps, opts);
 
-        // scope
+       // scope
         if (options.scope && angular.isObject(options.scope)) {
           this.scopes[toastId] = scope = options.scope;
         } else {
           this.scopes[toastId] = scope = $rootScope.$new();
+        }
+
+         // controller
+        if (options.controller && (angular.isString(options.controller) || angular.isArray(options.controller) || angular.isFunction(options.controller))) {
+          debugger
+          let ctrl = options.controller;
+          let controllerInstance = $controller(ctrl, {})); 
         }
 
         // create template

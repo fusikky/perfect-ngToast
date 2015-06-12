@@ -1,0 +1,47 @@
+high = 40px
+low = 0px
+
+// default (from bottom)
+@keyframes ngtoast-flyin
+  0%
+    opacity 0
+    transform translateY(high)
+  100%
+    opacity 1
+    transform translateY(low)
+
+@keyframes ngtoast-flyout
+  0%
+    opacity 1
+    transform translateY(low)
+  100%
+    opacity 0
+    transform translateY(high)
+
+// from top
+@keyframes ngtoast-flyin-top
+  0%
+    opacity 0
+    transform translateY(low)
+  100%
+    opacity 1
+    transform translateY(high)
+
+@keyframes ngtoast-flyout-top
+  0%
+    opacity 1
+    transform translateY(high)
+  100%
+    opacity 0
+    transform translateY(low)
+
+// from right
+@keyframes ngtoast-flyin-right
+  0%
+    opacity 0
+    transform translate(high, high)
+  100%
+    opacity 1
+    transform translate(low, high)
+
+// from left
