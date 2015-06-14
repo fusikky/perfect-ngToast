@@ -1,0 +1,169 @@
+button {
+  display: block;
+  margin: 10px 0;
+}
+.ngtoast-default {
+  border: 1px solid #000;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 200px;
+  height: 50px;
+  position: fixed;
+  top: 150px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  opacity: 0;
+  padding: 10px;
+}
+.ngtoast-fly.ngtoast-opening {
+  animation: ngtoast-flyin 0.3s;
+}
+.ngtoast-fly.ngtoast-open {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.ngtoast-fly.ngtoast-closing {
+  animation: ngtoast-flyout 0.5s;
+  transform: translateX(0px);
+}
+.ngtoast-notice {
+  top: 0;
+  right: 0;
+  left: auto;
+  margin: 0;
+  transform: translateY(0px);
+}
+.ngtoast-notice.ngtoast-opening {
+  animation: ngtoast-flyin-right 0.4s;
+}
+.ngtoast-notice.ngtoast-open {
+  opacity: 1;
+  transform: translate(0px, 40px);
+}
+.ngtoast-notice.ngtoast-closing {
+  animation: ngtoast-flyout-top 0.5s;
+  transform: translateX(0px);
+}
+.ngtoast-notice--info {
+  background-color: #ccf;
+}
+.ngtoast-notice--alert {
+  background-color: #fcc;
+}
+.ngtoast-hover {
+  background-color: #fcc;
+}
+.ngtoast-hover .lifemeter {
+  background-color: #f00;
+  width: 100px;
+  height: 10px;
+}
+.ngtoast-hover.ngtoast-open .lifemeter {
+  animation: lifemeter-anim linear 4s;
+}
+.ngtoast-hover.ngtoast-closing .lifemeter {
+  width: 0;
+}
+.ngtoast-hover:hover {
+  background-color: #cfc;
+  cursor: pointer;
+}
+.ngtoast-hover:hover .lifemeter {
+  width: 100px;
+  animation: none;
+}
+.ngtoast-multi {
+  text-align: center;
+  transform: translateY(0px);
+  border: none;
+}
+.ngtoast-multi div {
+  border: 1px solid #000;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  height: 30px;
+}
+.ngtoast-multi div:first-child {
+  opacity: 0;
+  transition: all 0.3s ease 0s;
+  transform: translateY(0px);
+}
+.ngtoast-multi div:nth-child(2) {
+  opacity: 0;
+  transition: all 0.3s ease 0.1s;
+  transform: translateY(0px);
+}
+.ngtoast-multi div:nth-child(3) {
+  opacity: 0;
+  transition: all 0.3s ease 0.2s;
+  transform: translateY(0px);
+}
+.ngtoast-multi.ngtoast-opening div:first-child {
+  transform: translateY(-50px);
+  opacity: 1;
+}
+.ngtoast-multi.ngtoast-opening div:nth-child(2) {
+  transform: translateY(-50px);
+  opacity: 1;
+}
+.ngtoast-multi.ngtoast-opening div:nth-child(3) {
+  transform: translateY(-50px);
+  opacity: 1;
+}
+.ngtoast-multi.ngtoast-open div {
+  transform: translateY(-50px);
+}
+.ngtoast-multi.ngtoast-open div:first-child {
+  opacity: 1;
+}
+.ngtoast-multi.ngtoast-open div:nth-child(2) {
+  opacity: 1;
+}
+.ngtoast-multi.ngtoast-open div:nth-child(3) {
+  opacity: 1;
+}
+.ngtoast-multi.ngtoast-closing div:first-child {
+  transition: all 0.3s ease 0.2s;
+  opacity: 0;
+}
+.ngtoast-multi.ngtoast-closing div:nth-child(2) {
+  transition: all 0.3s ease 0.1s;
+  opacity: 0;
+}
+.ngtoast-multi.ngtoast-closing div:nth-child(3) {
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+@-moz-keyframes lifemeter-anim {
+  0% {
+    width: 100px;
+  }
+  99.9% {
+    width: 0;
+  }
+}
+@-webkit-keyframes lifemeter-anim {
+  0% {
+    width: 100px;
+  }
+  99.9% {
+    width: 0;
+  }
+}
+@-o-keyframes lifemeter-anim {
+  0% {
+    width: 100px;
+  }
+  99.9% {
+    width: 0;
+  }
+}
+@keyframes lifemeter-anim {
+  0% {
+    width: 100px;
+  }
+  99.9% {
+    width: 0;
+  }
+}

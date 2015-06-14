@@ -1,0 +1,22 @@
+// ngtoast default style
+high = 40px
+low = 0px
+
+@keyframes ngtoast-fadein
+  0%
+    opacity 0
+  100%
+    opacity 1
+@keyframes ngtoast-fadeout
+  0%
+    opacity 1
+  100%
+    opacity 0
+
+.ngtoast-default
+  &.ngtoast-opening
+    animation ngtoast-fadein 0.5s
+  &.ngtoast-open
+    opacity 1
+  &.ngtoast-closing
+    animation ngtoast-fadeout 0.5s

@@ -5,6 +5,7 @@
   "authors": [
     "fusikky"
   ],
+  "main": "dist/js/ngToast.js",
   "license": "MIT",
   "keywords": [
     "angular.js",

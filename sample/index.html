@@ -1,0 +1,114 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ngToast Test</title>
+  <link rel="stylesheet" href="../dist/css/ngToast.css">
+  <link rel="stylesheet" href="../dist/css/ngToast-anim-custom.css">
+  <link rel="stylesheet" href="../dist/css/sample.css">
+</head>
+<body>
+  <div ng-app="app">
+    <h1>ngToast</h1>
+    <div ng-controller="ngToastCtrl">
+      <button ng-click="openDefault()">openDefault</button>
+      <button ng-click="openFly()">openFly</button>
+      <button ng-click="openNotice('Hello!','info')">openNotice</button>
+      <button ng-click="openClickToClose()">openClickToClose</button>
+      <button ng-click="openHover()">openHover</button>
+      <button ng-click="openHoverWithMeter()">openHoverWithMeter</button>
+      <button ng-click="openMulti()">openMulti</button>
+    </div>
+  </div>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../dist/js/ngToast.js"></script>
+<script>
+  angular.module('app', ['ngToast']).controller('ngToastCtrl', ['$scope', '$rootScope', '$interval', 'ngToast', function ($scope, $rootScope, $interval,ngToast) {
+
+    $scope.openDefault = function () {
+      ngToast.open({
+        template: '<div>Default Toast</div>',
+      });
+   };
+
+    $scope.openFly = function () {
+      ngToast.open({
+        template: '<div>Fly Toast</div>',
+        className: 'ngtoast-default ngtoast-fly'
+      });
+   };
+
+    $scope.openNotice = function (text, type) {
+      ngToast.open({
+        template: '<div class="ngtoast-notice">Notice: {{text}}</div>',
+        className: 'ngtoast-default ' + 'ngtoast-notice--' + type,
+        controller: ['$scope', function($scope) {
+          $scope.text = text;
+        }]
+      });
+    };
+
+  $scope.openClickToClose = function () {
+      ngToast.open({
+        template: '<div>Click to close</div>',
+        timeout: 60000,
+        clickToClose: true
+      });
+   };
+
+
+   $scope.openHover = function () {
+      ngToast.open({
+        template: '<div>Hover not close</div>',
+        className: 'ngtoast-default ngtoast-hover',
+        hoverNotClose: true
+      });
+   };
+
+   $scope.openHoverWithMeter = function () {
+     var scope = $rootScope.$new();
+     scope.count = 4;
+     scope.text = "Hover to Save Me! "
+     timerPromise = null
+     timerPromise = $interval(function(){
+       scope.count--;
+     }, 1000)
+
+    scope.mouseenter = function () {
+       scope.text = "Thanks! I won't close"
+       scope.count = 4;
+       scope.hover = true;
+       $interval.cancel(timerPromise);
+     };
+     scope.mouseleave = function () {
+       scope.text = "Hover to Save Me!"
+       scope.hover = false;
+       timerPromise = $interval(function(){
+         scope.count--;
+       }, 1000)
+     };
+
+     ngToast.open({
+       template: '<div ng-class="{\'hover\': hover}" ng-mouseover="mouseenter()", ng-mouseleave="mouseleave()">{{text}} {{count}}s<div class="lifemeter"></div></div>',
+       timeout: 4000,
+       scope: scope,
+       hoverNotClose: true,
+       className: 'ngtoast-default ngtoast-hover',
+       clickToClose: false
+     }).closePromise.then(function(){
+       $scope.openNotice('toast was dead...', 'alert')
+     })
+    };
+
+
+    $scope.openMulti = function () {
+      ngToast.open({
+        template: '<div class="ngtoast-multi"><div>aaa</div><div>bbb</div><div>ccc</div></div>',
+        timeout: 2000
+      });
+    };
+
+  }]);
+
+</script>
+</body>
+</html>
