@@ -1,3 +1,6 @@
+.ngtoast-default {
+  opacity: 0;
+}
 .ngtoast-default.ngtoast-opening {
   animation: ngtoast-fadein 0.5s;
 }

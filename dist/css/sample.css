@@ -13,7 +13,6 @@ button {
   right: 0;
   left: 0;
   margin: auto;
-  opacity: 0;
   padding: 10px;
 }
 .ngtoast-fly.ngtoast-opening {
