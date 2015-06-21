@@ -26,7 +26,8 @@ angular.module('ngToast', []).factory('ngToast', [
          closing: 'ngtoast-closing'
        },
        clickToClose: false, // boolean
-       hoverNotClose: false // boolean
+       hoverNotClose: false, // boolean
+       autoClose: true // boolean
     };
 
     class ngToast {
@@ -44,7 +45,8 @@ angular.module('ngToast', []).factory('ngToast', [
           toastId = this.globalId++,
           scope = {},
           closeDefer,
-          closeTimeout = DEFAULT_TIMEOUT_MSEC;
+          closeTimeout = DEFAULT_TIMEOUT_MSEC,
+          timeoutPromise = null;
 
         this.closeDefers[toastId] = closeDefer = $q.defer();
         this.openToastIds.push(toastId);
@@ -105,9 +107,11 @@ angular.module('ngToast', []).factory('ngToast', [
         }
 
         // auto close
-        var timeoutPromise = $timeout((evt) => {
-          this.close($toast);
-        }, closeTimeout);
+        if (options.autoClose) {
+          timeoutPromise = $timeout((evt) => {
+            this.close($toast);
+          }, closeTimeout);
+        }
 
         // hoverNotClose
         if (options.hoverNotClose) {
