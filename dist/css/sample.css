@@ -3,9 +3,7 @@ button {
   margin: 10px 0;
 }
 .ngtoast-default {
-  border: 1px solid #000;
   border-radius: 10px;
-  background-color: #fff;
   width: 200px;
   height: 50px;
   position: fixed;
@@ -73,42 +71,44 @@ button {
   animation: none;
 }
 .ngtoast-multi {
+  background-color: rgba(255,255,255,0);
+  border: none;
+  box-shadow: none;
   text-align: center;
   transform: translateY(0px);
-  border: none;
 }
 .ngtoast-multi div {
-  border: 1px solid #000;
   border-radius: 4px;
-  margin-bottom: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
   height: 30px;
+  margin-bottom: 10px;
 }
 .ngtoast-multi div:first-child {
   opacity: 0;
-  transition: all 0.3s ease 0s;
   transform: translateY(0px);
+  transition: all 0.3s ease 0s;
 }
 .ngtoast-multi div:nth-child(2) {
   opacity: 0;
-  transition: all 0.3s ease 0.1s;
   transform: translateY(0px);
+  transition: all 0.3s ease 0.1s;
 }
 .ngtoast-multi div:nth-child(3) {
   opacity: 0;
-  transition: all 0.3s ease 0.2s;
   transform: translateY(0px);
+  transition: all 0.3s ease 0.2s;
 }
 .ngtoast-multi.ngtoast-opening div:first-child {
-  transform: translateY(-50px);
   opacity: 1;
+  transform: translateY(-50px);
 }
 .ngtoast-multi.ngtoast-opening div:nth-child(2) {
-  transform: translateY(-50px);
   opacity: 1;
+  transform: translateY(-50px);
 }
 .ngtoast-multi.ngtoast-opening div:nth-child(3) {
-  transform: translateY(-50px);
   opacity: 1;
+  transform: translateY(-50px);
 }
 .ngtoast-multi.ngtoast-open div {
   transform: translateY(-50px);
@@ -123,16 +123,16 @@ button {
   opacity: 1;
 }
 .ngtoast-multi.ngtoast-closing div:first-child {
-  transition: all 0.3s ease 0.2s;
   opacity: 0;
+  transition: all 0.3s ease 0.2s;
 }
 .ngtoast-multi.ngtoast-closing div:nth-child(2) {
-  transition: all 0.3s ease 0.1s;
   opacity: 0;
+  transition: all 0.3s ease 0.1s;
 }
 .ngtoast-multi.ngtoast-closing div:nth-child(3) {
-  transition: all 0.3s ease;
   opacity: 0;
+  transition: all 0.3s ease;
 }
 @-moz-keyframes lifemeter-anim {
   0% {

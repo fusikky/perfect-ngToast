@@ -1,0 +1,14 @@
+.ngtoast-turn
+  opacity 0
+  transform translateY(20px) rotateY(-180deg)
+  transition all .5s ease
+  &.ngtoast-opening
+    transform translateY(0px) rotateY(0deg)
+    opacity 1
+  &.ngtoast-open
+    opacity 1
+    transform translateY(0px) rotateY(0deg)
+  &.ngtoast-closing
+    transform translateY(20px) rotateY(180deg)
+    opacity 1
+

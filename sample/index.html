@@ -3,7 +3,9 @@
   <meta charset="utf-8">
   <title>ngToast Test</title>
   <link rel="stylesheet" href="../dist/css/ngToast.css">
-  <link rel="stylesheet" href="../dist/css/ngToast-anim-custom.css">
+  <link rel="stylesheet" href="../dist/css/ngToast-theme-default.css">
+  <link rel="stylesheet" href="../dist/css/ngToast-theme-fly.css">
+  <link rel="stylesheet" href="../dist/css/ngToast-theme-custom.css">
   <link rel="stylesheet" href="../dist/css/sample.css">
 </head>
 <body>
@@ -17,6 +19,7 @@
       <button ng-click="openHover()">openHover</button>
       <button ng-click="openHoverWithMeter()">openHoverWithMeter</button>
       <button ng-click="openMulti()">openMulti</button>
+      <button ng-click="openTurn()">openTurn</button>
     </div>
   </div>
 <script src="../bower_components/angular/angular.js"></script>
@@ -106,6 +109,12 @@
         timeout: 2000
       });
     };
+
+   $scope.openTurn = function () {
+      ngToast.open({
+        template: '<div class="ngtoast-turn">Turn</div>'
+      });
+   };
 
   }]);
 
