@@ -1,10 +1,12 @@
 var gulp = require('gulp');
 var stylus = require('gulp-stylus');
 var babel = require('gulp-babel');
+var autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('stylus', function() {
   gulp.src('src/css/*.styl')
   .pipe(stylus())
+  .pipe(autoprefixer())
   .pipe(gulp.dest('dist/css/'));
 });
 

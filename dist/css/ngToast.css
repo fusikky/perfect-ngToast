@@ -2,31 +2,17 @@
   opacity: 0;
 }
 .ngtoast-default.ngtoast-opening {
-  animation: ngtoast-fadein 0.5s;
+  -webkit-animation: ngtoast-fadein 0.5s;
+          animation: ngtoast-fadein 0.5s;
 }
 .ngtoast-default.ngtoast-open {
   opacity: 1;
 }
 .ngtoast-default.ngtoast-closing {
-  animation: ngtoast-fadeout 0.5s;
-}
-@-moz-keyframes ngtoast-fadein {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  -webkit-animation: ngtoast-fadeout 0.5s;
+          animation: ngtoast-fadeout 0.5s;
 }
 @-webkit-keyframes ngtoast-fadein {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-o-keyframes ngtoast-fadein {
   0% {
     opacity: 0;
   }
@@ -42,23 +28,7 @@
     opacity: 1;
   }
 }
-@-moz-keyframes ngtoast-fadeout {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 @-webkit-keyframes ngtoast-fadeout {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@-o-keyframes ngtoast-fadeout {
   0% {
     opacity: 1;
   }

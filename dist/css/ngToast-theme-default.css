@@ -9,6 +9,8 @@
   right: 0;
   text-align: center;
   top: 300px;
-  transform: translateY(20px);
+  -webkit-transform: translateY(20px);
+      -ms-transform: translateY(20px);
+          transform: translateY(20px);
   width: 100px;
 }

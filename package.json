@@ -18,6 +18,7 @@
   "homepage": "https://github.com/fusikky/perfect-ngToast",
   "dependencies": {
     "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
     "gulp-babel": "^5.1.0",
     "gulp-stylus": "^2.0.3"
   }
