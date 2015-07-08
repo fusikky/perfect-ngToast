@@ -170,6 +170,15 @@ angular.module('ngToast', []).factory('ngToast', [
           $rootScope.$broadcast('ngToast.closed', toastId);
         });
       }
+
+      closeAll(value) {
+        var $allToasts = document.querySelectorAll('.ngtoast-container');
+        for (var i =  0; i < $allToasts.length; i++) {
+            var toast = $allToasts[i];
+            this.close($el(toast), value);
+        }
+      }
+
     }
 
     return new ngToast();
