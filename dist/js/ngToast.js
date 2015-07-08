@@ -147,7 +147,10 @@ angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$co
 
         return {
           id: toastId,
-          closePromise: closeDefer.promise
+          closePromise: closeDefer.promise,
+          close: function close(value) {
+            _this.close($toast, value);
+          }
         };
       }
     }, {
