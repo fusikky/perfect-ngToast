@@ -4,11 +4,7 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$controller', '$timeout', '$q', function ($rootScope, $compile, $controller, $timeout, $q) {
-
-  /** TODO:
-   * options : html template get / plain
-   */
+angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$controller', '$timeout', '$q', '$http', function ($rootScope, $compile, $controller, $timeout, $q, $http) {
 
   var $el = angular.element,
       options = {},
@@ -27,7 +23,8 @@ angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$co
     },
     clickToClose: false, // boolean
     hoverNotClose: false, // boolean
-    autoClose: true // boolean
+    autoClose: true, // boolean
+    plain: true // boolean
   };
 
   var ngToast = (function () {
@@ -76,31 +73,10 @@ angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$co
           var controllerInstance = $controller(ctrl, { $scope: scope });
         }
 
-        // create template
-        // TODO: use template url
-        if (options.template && angular.isString(options.template)) {
-          $toast = $el(options.template);
-          $toast.addClass('ngtoast-container').attr('toast-id', toastId);
-        }
-
-        // add className
-        if (options.className) {
-          $toast.addClass(options.className);
-        }
-
-        // click to close
-        if (options.clickToClose) {
-          $toast.on('click', function (evt) {
-            _this.close($toast);
-          });
-        }
-
         // set timeout for close
         if (options.timeout && angular.isNumber(options.timeout)) {
           closeTimeout = options.timeout;
         }
-
-        $compile($toast)(scope);
 
         // set toast parent dom
         if (options.appendTo && angular.isString(options.appendTo)) {
@@ -109,41 +85,84 @@ angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$co
           $toastParent = $body;
         }
 
-        // auto close
-        if (options.autoClose) {
-          timeoutPromise = $timeout(function (evt) {
-            _this.close($toast);
-          }, closeTimeout);
-        }
+        // set action to toast (after template loaded).
+        function setActionToToast($toast) {
+          var _this2 = this;
 
-        // hoverNotClose
-        if (options.hoverNotClose) {
-          $toast.on('mouseenter', function (evt) {
-            $timeout.cancel(timeoutPromise);
-          }).on('mouseleave', function (evt) {
+          $toast.addClass('ngtoast-container').attr('toast-id', toastId);
+
+          // add className
+          if (options.className) {
+            $toast.addClass(options.className);
+          }
+
+          // click to close
+          if (options.clickToClose) {
+            $toast.on('click', function (evt) {
+              _this2.close($toast);
+            });
+          }
+
+          $compile($toast)(scope);
+
+          // auto close
+          if (options.autoClose) {
             timeoutPromise = $timeout(function (evt) {
-              _this.close($toast);
+              _this2.close($toast);
             }, closeTimeout);
+          }
+
+          // hoverNotClose
+          if (options.hoverNotClose) {
+            $toast.on('mouseenter', function (evt) {
+              $timeout.cancel(timeoutPromise);
+            }).on('mouseleave', function (evt) {
+              timeoutPromise = $timeout(function (evt) {
+                _this2.close($toast);
+              }, closeTimeout);
+            });
+          }
+
+          // append toast
+          $toastParent.append($toast);
+
+          // open animation
+          $timeout(function () {
+            $toast.addClass(options.animClass.opening);
+            $rootScope.$broadcast('ngToast.opening', toastId);
+            $toast.unbind(animationEndEvent).bind(animationEndEvent, function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (!$el(e.target).hasClass('ngtoast-container')) {
+                return;
+              }
+              $toast.removeClass(options.animClass.opening).addClass(options.animClass.open);
+              $rootScope.$broadcast('ngToast.opened', toastId);
+            });
+          }, 100);
+        }
+
+        // create template and set action
+        $q.all({
+          template: loadTemplate(options.template)
+        }).then(function (res) {
+          $toast = $el(res.template);
+          setActionToToast.call(_this, $toast);
+        });
+
+        function loadTemplateUrl(templUrl) {
+          return $http.get(templUrl).then(function (response) {
+            return response.data;
           });
         }
 
-        // append toast
-        $toastParent.append($toast);
-
-        // open animation
-        $timeout(function () {
-          $toast.addClass(options.animClass.opening);
-          $rootScope.$broadcast('ngToast.opening', toastId);
-          $toast.unbind(animationEndEvent).bind(animationEndEvent, function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (!$el(e.target).hasClass('ngtoast-container')) {
-              return;
-            }
-            $toast.removeClass(options.animClass.opening).addClass(options.animClass.open);
-            $rootScope.$broadcast('ngToast.opened', toastId);
-          });
-        }, 100);
+        function loadTemplate(templ) {
+          if (!templ) return '<span>Empty</span>';
+          if (angular.isString(templ) && options.plain) {
+            return templ;
+          }
+          return loadTemplateUrl(templ);
+        }
 
         return {
           id: toastId,
@@ -156,7 +175,7 @@ angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$co
     }, {
       key: 'close',
       value: function close($toast, value) {
-        var _this2 = this;
+        var _this3 = this;
 
         var toastId = parseInt($toast.attr('toast-id'));
         $toast.removeClass(options.animClass.open).addClass(options.animClass.closing);
@@ -169,8 +188,8 @@ angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$co
             return;
           }
           $toast.remove();
-          _this2.scopes[toastId].$destroy();
-          _this2.closeDefers[toastId].resolve(value);
+          _this3.scopes[toastId].$destroy();
+          _this3.closeDefers[toastId].resolve(value);
           $rootScope.$broadcast('ngToast.closed', toastId);
         });
       }
