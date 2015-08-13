@@ -1,4 +1,4 @@
-# [WIP] perfect ngToast
+# perfect ngToast
 
 Create toast plugin for [Angular.js](https://angularjs.org/).
 
@@ -23,9 +23,24 @@ This method allows to open toast with `options` object.
 ### Options:
 
 ##### ``template {String}``
-This is necessary property to open toast.
 
-(in future, you can set dom url to this property.)
+This property is for setting template.
+
+You can set template PATH or HTML DOM such as `<p>Template</p>`
+
+When you want to set this param as template PATH, Don't forget to set property `plain` `false`, descriobe below. 
+
+`plain` param is `true` by default!
+
+If you don't set `template`, `<span>Epmty</span>` will be set by default.
+
+##### ``plain {Boolean}``
+
+This property is used to decide how to treat template. string or PATH.
+If you set `true`, template processed as HTML DOM.
+
+default: `true`
+
 
 ##### ``timeout {Number}``
 This is duration time to remain toast. [ms]
