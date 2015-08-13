@@ -1,21 +1,9 @@
 describe('perfect-ngToast', function() {
 
   // testing contents
-  // - ngToast to be defined
-  // - no options
-  // - plain template
-  // - template url ($httpBackend)
-  // - controller instance
-
   beforeEach(module('ngToast'));
   afterEach(inject(function (ngToast, $document) {
     ngToast.closeAll();
-
-   //  toasts = angular.element('body')
-   //  .find('.ngtoast-container')
-   //  console.log(toasts);
-   //  $document[0].queryselector('.ngtoast-container')
-   //  toasts.triggerHandler('animationend');
 
     [].slice.call(
       $document.find('body').children()
@@ -23,7 +11,6 @@ describe('perfect-ngToast', function() {
     .map(angular.element)
     .forEach(function (elm) {
       if (elm.hasClass('ngtoast-container')) {
-        // yuck
         elm.triggerHandler('animationend');
       }
     });
@@ -71,7 +58,7 @@ describe('perfect-ngToast', function() {
     var elm;
     beforeEach(inject(function (ngToast, $timeout, $document) {
       var id = ngToast.open({
-        template: '<div><p>some text {{1 + 1}}</p></div>',
+        template: "<div><p>Say {{'Hello'}}</p></div>",
         plain: true
       }).id;
       $timeout.flush();
@@ -79,7 +66,7 @@ describe('perfect-ngToast', function() {
     }));
 
     it('should have compiled the html', inject(function () {
-      expect(elm.textContent).toEqual('some text 2');
+      expect(elm.textContent).toEqual('Say Hello');
     }));
   });
 
@@ -89,8 +76,7 @@ describe('perfect-ngToast', function() {
     var elm;
     beforeEach(inject(function (ngToast, $timeout, $document, $httpBackend) {
       $httpBackend.when('GET', 'test_template.html')
-      // $httpBackend.whenGET('test.html')
-      .respond('<div><p>some text</p></div>');
+      .respond('<div><p>Hello Toast</p></div>');
       var id = ngToast.open({
         template: 'test_template.html',
         plain: false
@@ -101,10 +87,9 @@ describe('perfect-ngToast', function() {
     }));
 
     it('should have compiled the html', inject(function () {
-      expect(elm.textContent).toEqual('some text');
+      expect(elm.textContent).toEqual('Hello Toast');
     }));
   });
-
 
   // - controller instance
   describe('controller scope should be activated', function () {
