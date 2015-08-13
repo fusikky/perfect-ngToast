@@ -89,7 +89,7 @@ angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$co
         function setActionToToast($toast) {
           var _this2 = this;
 
-          $toast.addClass('ngtoast-container').attr('toast-id', toastId);
+          $toast.addClass('ngtoast-container').attr('id', 'toast' + toastId).attr('toast-id', toastId);
 
           // add className
           if (options.className) {
