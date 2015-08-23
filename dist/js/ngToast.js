@@ -24,7 +24,8 @@ angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$co
     clickToClose: false, // boolean
     hoverNotClose: false, // boolean
     autoClose: true, // boolean
-    plain: true // boolean
+    plain: true, // boolean
+    mustUnique: false //boolean
   };
 
   var ngToast = (function () {
@@ -55,6 +56,12 @@ angular.module('ngToast', []).factory('ngToast', ['$rootScope', '$compile', '$co
 
         // extend options
         options = angular.extend({}, defaultOps, opts);
+
+        // toast must unique
+        var $allToasts = document.querySelectorAll('.ngtoast-container');
+        if ($allToasts.length > 0 && options.mustUnique) {
+          return;
+        }
 
         // scope
         if (options.scope && angular.isObject(options.scope)) {
