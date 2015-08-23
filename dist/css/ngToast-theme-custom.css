@@ -1,22 +1,136 @@
-.ngtoast-turn {
+.toast-emerge {
+  box-shadow: 0 0 0 0 rgba(0,0,0,0);
+  -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+          transform: translateY(0px);
+  -webkit-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
+}
+.toast-emerge.ngtoast-opening,
+.toast-emerge.ngtoast-open {
+  box-shadow: 0px 30px 20px -23px rgba(0,0,0,0.5);
+  -webkit-transform: translateY(-20px);
+      -ms-transform: translateY(-20px);
+          transform: translateY(-20px);
+}
+.toast-zoom-expand {
+  -webkit-transform: rotateX(90deg) scale(0.7);
+          transform: rotateX(90deg) scale(0.7);
+}
+.toast-zoom-expand.ngtoast-opening,
+.toast-zoom-expand.ngtoast-open {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+}
+.toast-expand {
+  -webkit-transform-origin: 0 50px;
+      -ms-transform-origin: 0 50px;
+          transform-origin: 0 50px;
+  -webkit-transform: rotateX(-90deg);
+          transform: rotateX(-90deg);
+}
+.toast-expand.ngtoast-opening,
+.toast-expand.ngtoast-open {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+}
+.toast-appeal {
+  -webkit-transform: scale(0.7);
+      -ms-transform: scale(0.7);
+          transform: scale(0.7);
+  -webkit-transition: all 0.1s cubic-bezier(0, 1, 0.99, 1.72);
+          transition: all 0.1s cubic-bezier(0, 1, 0.99, 1.72);
+}
+.toast-appeal.ngtoast-opening,
+.toast-appeal.ngtoast-open {
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+}
+.toast-turn {
+  -webkit-transform: rotatey(0deg);
+      -ms-transform: rotatey(0deg);
+          transform: rotatey(0deg);
+}
+.toast-turn.ngtoast-opening,
+.toast-turn.ngtoast-open {
+  -webkit-transform: translateY(-20px) rotatey(360deg);
+      -ms-transform: translateY(-20px) rotatey(360deg);
+          transform: translateY(-20px) rotatey(360deg);
+}
+.ngtoast-multi {
+  background-color: rgba(255,255,255,0);
+  border: none;
+  box-shadow: none;
+  text-align: center;
+  -webkit-transform: translateY(low);
+      -ms-transform: translateY(low);
+          transform: translateY(low);
+  position: absolute;
+  top: 200px;
+  left: 0;
+  right: 0;
+}
+.ngtoast-multi div {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+  height: 30px;
+  margin-bottom: 10px;
+  margin-right: 20px;
   opacity: 0;
-  -webkit-transform: translateY(20px) rotateY(-180deg);
-          transform: translateY(20px) rotateY(-180deg);
-  -webkit-transition: all 0.5s ease;
-          transition: all 0.5s ease;
+  -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+          transform: translateY(0px);
+  width: 200px;
 }
-.ngtoast-turn.ngtoast-opening {
-  -webkit-transform: translateY(0px) rotateY(0deg);
-          transform: translateY(0px) rotateY(0deg);
-  opacity: 1;
+.ngtoast-multi div:first-child {
+  -webkit-transition: all 0.3s ease 0s;
+          transition: all 0.3s ease 0s;
 }
-.ngtoast-turn.ngtoast-open {
-  opacity: 1;
-  -webkit-transform: translateY(0px) rotateY(0deg);
-          transform: translateY(0px) rotateY(0deg);
+.ngtoast-multi div:nth-child(2) {
+  -webkit-transition: all 0.3s ease 0.1s;
+          transition: all 0.3s ease 0.1s;
 }
-.ngtoast-turn.ngtoast-closing {
-  -webkit-transform: translateY(20px) rotateY(180deg);
-          transform: translateY(20px) rotateY(180deg);
+.ngtoast-multi div:nth-child(3) {
+  -webkit-transition: all 0.3s ease 0.2s;
+          transition: all 0.3s ease 0.2s;
+}
+.ngtoast-multi.ngtoast-opening,
+.ngtoast-multi.ngtoast-closing {
+  -webkit-animation: ngtoast-anim-none 0.5s;
+          animation: ngtoast-anim-none 0.5s;
+}
+.ngtoast-multi.ngtoast-opening div,
+.ngtoast-multi.ngtoast-open div {
   opacity: 1;
+  -webkit-transform: translateY(-50px);
+      -ms-transform: translateY(-50px);
+          transform: translateY(-50px);
+}
+.ngtoast-multi-horizontal {
+  -webkit-transform: translateY(80px);
+      -ms-transform: translateY(80px);
+          transform: translateY(80px);
+}
+.ngtoast-multi-horizontal div {
+  display: inline-block;
+  width: 150px;
+  height: 30px;
+}
+@-webkit-keyframes ngtoast-anim-none {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes ngtoast-anim-none {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
 }

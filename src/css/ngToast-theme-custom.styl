@@ -1,14 +1,85 @@
-.ngtoast-turn
-  opacity 0
-  transform translateY(20px) rotateY(-180deg)
-  transition all .5s ease
-  &.ngtoast-opening
-    transform translateY(0px) rotateY(0deg)
+// noop animation. for trigger animationend event
+@keyframes ngtoast-anim-none
+  0%
     opacity 1
-  &.ngtoast-open
-    opacity 1
-    transform translateY(0px) rotateY(0deg)
-  &.ngtoast-closing
-    transform translateY(20px) rotateY(180deg)
+  100%
     opacity 1
 
+
+.toast-emerge
+  box-shadow 0 0 0 0 rgba(0,0,0,0)
+  transform translateY(0px)
+  transition all .3s ease-out
+  &.ngtoast-opening
+  &.ngtoast-open
+    box-shadow 0px 30px 20px -23px rgba(0,0,0,0.5)
+    transform translateY(-20px)
+
+.toast-zoom-expand
+  transform rotateX(90deg) scale(0.7)
+  &.ngtoast-opening
+  &.ngtoast-open
+    transform rotateX(0deg)
+
+.toast-expand
+  transform-origin 0 50px
+  transform rotateX(-90deg)
+  &.ngtoast-opening
+  &.ngtoast-open
+    transform rotateX(0deg)
+
+.toast-appeal
+  transform scale(0.7)
+  transition all .1s cubic-bezier(0,1,.99,1.72)
+  &.ngtoast-opening
+  &.ngtoast-open
+    transform scale(1.0)
+
+.toast-turn
+  transform rotatey(0deg) 
+  &.ngtoast-opening
+  &.ngtoast-open
+    transform translateY(-20px) rotatey(360deg)
+
+.ngtoast-multi
+  background-color rgba(255, 255, 255, .0)
+  border none
+  box-shadow none
+  text-align center
+  transform translateY(low)
+  position absolute
+  top 200px
+  left 0
+  right 0
+  & div
+    background-color #fff
+    border-radius 4px
+    box-shadow 0px 0px 10px 0px rgba(0,0,0,0.4)
+    height 30px
+    margin-bottom 10px
+    margin-right 20px
+    opacity 0
+    transform translateY(0px)
+    width 200px
+    &:first-child
+      transition all .3s ease 0s
+    &:nth-child(2)
+      transition all .3s ease .1s
+    &:nth-child(3)
+      transition all .3s ease .2s
+
+  &.ngtoast-opening
+  &.ngtoast-closing
+    animation ngtoast-anim-none 0.5s
+  &.ngtoast-opening
+  &.ngtoast-open
+    & div
+      opacity 1
+      transform translateY(-50px)
+
+.ngtoast-multi-horizontal
+  transform translateY(80px)
+  & div
+    display inline-block
+    width 150px
+    height 30px

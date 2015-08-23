@@ -1,0 +1,206 @@
+body {
+  background-color: #0c0;
+}
+h1 {
+  text-align: center;
+  background-color: #888;
+  color: #fff;
+  padding: 20px;
+  width: 100%;
+}
+.btn-area {
+  -webkit-transform: translateY(300px);
+      -ms-transform: translateY(300px);
+          transform: translateY(300px);
+  text-align: center;
+}
+button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: inline-block;
+  margin: 20px;
+  padding: 3px 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #eee;
+  width: 200px;
+  height: 30px;
+}
+button:hover {
+  background-color: #ffd;
+}
+.ngtoast-default {
+  border-radius: 10px;
+  width: 200px;
+  height: 50px;
+  position: fixed;
+  top: 150px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #eee;
+  -webkit-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
+}
+.toast-anim1 {
+  box-shadow: 0 0 0 0 rgba(0,0,0,0);
+  -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+          transform: translateY(0px);
+  -webkit-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
+}
+.toast-anim1.ngtoast-opening,
+.toast-anim1.ngtoast-open {
+  box-shadow: 0px 30px 20px -23px rgba(0,0,0,0.5);
+  -webkit-transform: translateY(-20px);
+      -ms-transform: translateY(-20px);
+          transform: translateY(-20px);
+}
+.toast-anim2 {
+  -webkit-transform: rotateX(90deg) scale(0.7);
+          transform: rotateX(90deg) scale(0.7);
+}
+.toast-anim2.ngtoast-opening,
+.toast-anim2.ngtoast-open {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+}
+.toast-anim3 {
+  -webkit-transform-origin: 0 50px;
+      -ms-transform-origin: 0 50px;
+          transform-origin: 0 50px;
+  -webkit-transform: rotateX(-90deg);
+          transform: rotateX(-90deg);
+}
+.toast-anim3.ngtoast-opening,
+.toast-anim3.ngtoast-open {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+}
+.toast-anim4 {
+  -webkit-transform: scale(0.7);
+      -ms-transform: scale(0.7);
+          transform: scale(0.7);
+  -webkit-transition: all 0.1s cubic-bezier(0, 1, 0.99, 1.72);
+          transition: all 0.1s cubic-bezier(0, 1, 0.99, 1.72);
+}
+.toast-anim4.ngtoast-opening,
+.toast-anim4.ngtoast-open {
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+}
+.toast-anim5 {
+  -webkit-transform-origin: 0 50px;
+      -ms-transform-origin: 0 50px;
+          transform-origin: 0 50px;
+  -webkit-transform: rotateX(-90deg);
+          transform: rotateX(-90deg);
+}
+.toast-anim5.ngtoast-opening,
+.toast-anim5.ngtoast-open {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+}
+.toast-anim6 {
+  -webkit-transform: rotatey(0deg);
+      -ms-transform: rotatey(0deg);
+          transform: rotatey(0deg);
+}
+.toast-anim6.ngtoast-opening,
+.toast-anim6.ngtoast-open {
+  -webkit-transform: translateY(-20px) rotatey(360deg);
+      -ms-transform: translateY(-20px) rotatey(360deg);
+          transform: translateY(-20px) rotatey(360deg);
+}
+.ngtoast-multi-horizontal {
+  background-color: rgba(255,255,255,0);
+  border: none;
+  box-shadow: none;
+  text-align: center;
+  -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+          transform: translateY(0px);
+  position: absolute;
+  top: 300px;
+  left: 0;
+  right: 0;
+}
+.ngtoast-multi-horizontal div {
+  display: inline-block;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+  height: 30px;
+  margin-bottom: 10px;
+  width: 100px;
+  background-color: #fff;
+  margin-right: 20px;
+}
+.ngtoast-multi-horizontal div:first-child {
+  opacity: 0;
+  -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+          transform: translateY(0px);
+  -webkit-transition: all 0.3s ease 0s;
+          transition: all 0.3s ease 0s;
+}
+.ngtoast-multi-horizontal div:nth-child(2) {
+  opacity: 0;
+  -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+          transform: translateY(0px);
+  -webkit-transition: all 0.3s ease 0.1s;
+          transition: all 0.3s ease 0.1s;
+}
+.ngtoast-multi-horizontal div:nth-child(3) {
+  opacity: 0;
+  -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+          transform: translateY(0px);
+  -webkit-transition: all 0.3s ease 0.2s;
+          transition: all 0.3s ease 0.2s;
+}
+.ngtoast-multi-horizontal.ngtoast-opening {
+  -webkit-animation: ngtoast-anim-none 0.5s;
+          animation: ngtoast-anim-none 0.5s;
+}
+.ngtoast-multi-horizontal.ngtoast-opening div:first-child,
+.ngtoast-multi-horizontal.ngtoast-open div:first-child {
+  opacity: 1;
+  -webkit-transform: translateY(-50px);
+      -ms-transform: translateY(-50px);
+          transform: translateY(-50px);
+}
+.ngtoast-multi-horizontal.ngtoast-opening div:nth-child(2),
+.ngtoast-multi-horizontal.ngtoast-open div:nth-child(2) {
+  opacity: 1;
+  -webkit-transform: translateY(-50px);
+      -ms-transform: translateY(-50px);
+          transform: translateY(-50px);
+}
+.ngtoast-multi-horizontal.ngtoast-opening div:nth-child(3),
+.ngtoast-multi-horizontal.ngtoast-open div:nth-child(3) {
+  opacity: 1;
+  -webkit-transform: translateY(-50px);
+      -ms-transform: translateY(-50px);
+          transform: translateY(-50px);
+}
+@-webkit-keyframes ngtoast-anim-none {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes ngtoast-anim-none {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
