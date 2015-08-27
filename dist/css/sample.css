@@ -1,8 +1,59 @@
-button {
-  display: block;
-  margin: 10px 0;
+body {
+  background-color: #0c0;
+  margin: 0;
+  width: 800px;
 }
-.ngtoast-default {
+button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 20px;
+  outline: 0;
+  padding: 3px 10px;
+  width: 180px;
+  height: 30px;
+}
+button:hover {
+  background-color: #ffd;
+}
+h1 {
+  background-color: #888;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+.btn-area {
+  margin: auto;
+  -webkit-transform: translateY(250px);
+      -ms-transform: translateY(250px);
+          transform: translateY(250px);
+  text-align: center;
+}
+button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #fff;
+  border: 1px solid #eee;
+  cursor: pointer;
+  display: inline-block;
+  margin: 20px;
+  padding: 3px 10px;
+  width: 200px;
+  height: 30px;
+}
+button:hover {
+  background-color: #ffd;
+}
+.ngtoast-anim-default {
+  background-color: #fff;
+  border: 1px solid #eee;
   border-radius: 10px;
   width: 200px;
   height: 50px;
@@ -12,179 +63,7 @@ button {
   left: 0;
   margin: auto;
   padding: 10px;
-}
-.ngtoast-fly.ngtoast-opening {
-  -webkit-animation: ngtoast-flyin 0.3s;
-          animation: ngtoast-flyin 0.3s;
-}
-.ngtoast-fly.ngtoast-open {
-  -webkit-transform: translateY(0px);
-      -ms-transform: translateY(0px);
-          transform: translateY(0px);
-  opacity: 1;
-}
-.ngtoast-fly.ngtoast-closing {
-  -webkit-animation: ngtoast-flyout 0.5s;
-          animation: ngtoast-flyout 0.5s;
-  -webkit-transform: translateX(0px);
-      -ms-transform: translateX(0px);
-          transform: translateX(0px);
-}
-.ngtoast-notice {
-  top: 0;
-  right: 0;
-  left: auto;
-  margin: 0;
-  -webkit-transform: translateY(0px);
-      -ms-transform: translateY(0px);
-          transform: translateY(0px);
-}
-.ngtoast-notice.ngtoast-opening {
-  -webkit-animation: ngtoast-flyin-right 0.4s;
-          animation: ngtoast-flyin-right 0.4s;
-}
-.ngtoast-notice.ngtoast-open {
-  opacity: 1;
-  -webkit-transform: translate(0px, 40px);
-      -ms-transform: translate(0px, 40px);
-          transform: translate(0px, 40px);
-}
-.ngtoast-notice.ngtoast-closing {
-  -webkit-animation: ngtoast-flyout-top 0.5s;
-          animation: ngtoast-flyout-top 0.5s;
-  -webkit-transform: translateX(0px);
-      -ms-transform: translateX(0px);
-          transform: translateX(0px);
-}
-.ngtoast-notice--info {
-  background-color: #ccf;
-}
-.ngtoast-notice--alert {
-  background-color: #fcc;
-}
-.ngtoast-hover {
-  background-color: #fcc;
-}
-.ngtoast-hover .lifemeter {
-  background-color: #f00;
-  width: 100px;
-  height: 10px;
-}
-.ngtoast-hover.ngtoast-open .lifemeter {
-  -webkit-animation: lifemeter-anim linear 4s;
-          animation: lifemeter-anim linear 4s;
-}
-.ngtoast-hover.ngtoast-closing .lifemeter {
-  width: 0;
-}
-.ngtoast-hover:hover {
-  background-color: #cfc;
-  cursor: pointer;
-}
-.ngtoast-hover:hover .lifemeter {
-  width: 100px;
-  -webkit-animation: none;
-          animation: none;
-}
-.ngtoast-multi {
-  background-color: rgba(255,255,255,0);
-  border: none;
-  box-shadow: none;
+  -webkit-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
   text-align: center;
-  -webkit-transform: translateY(0px);
-      -ms-transform: translateY(0px);
-          transform: translateY(0px);
-}
-.ngtoast-multi div {
-  border-radius: 4px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-  height: 30px;
-  margin-bottom: 10px;
-}
-.ngtoast-multi div:first-child {
-  opacity: 0;
-  -webkit-transform: translateY(0px);
-      -ms-transform: translateY(0px);
-          transform: translateY(0px);
-  -webkit-transition: all 0.3s ease 0s;
-          transition: all 0.3s ease 0s;
-}
-.ngtoast-multi div:nth-child(2) {
-  opacity: 0;
-  -webkit-transform: translateY(0px);
-      -ms-transform: translateY(0px);
-          transform: translateY(0px);
-  -webkit-transition: all 0.3s ease 0.1s;
-          transition: all 0.3s ease 0.1s;
-}
-.ngtoast-multi div:nth-child(3) {
-  opacity: 0;
-  -webkit-transform: translateY(0px);
-      -ms-transform: translateY(0px);
-          transform: translateY(0px);
-  -webkit-transition: all 0.3s ease 0.2s;
-          transition: all 0.3s ease 0.2s;
-}
-.ngtoast-multi.ngtoast-opening div:first-child {
-  opacity: 1;
-  -webkit-transform: translateY(-50px);
-      -ms-transform: translateY(-50px);
-          transform: translateY(-50px);
-}
-.ngtoast-multi.ngtoast-opening div:nth-child(2) {
-  opacity: 1;
-  -webkit-transform: translateY(-50px);
-      -ms-transform: translateY(-50px);
-          transform: translateY(-50px);
-}
-.ngtoast-multi.ngtoast-opening div:nth-child(3) {
-  opacity: 1;
-  -webkit-transform: translateY(-50px);
-      -ms-transform: translateY(-50px);
-          transform: translateY(-50px);
-}
-.ngtoast-multi.ngtoast-open div {
-  -webkit-transform: translateY(-50px);
-      -ms-transform: translateY(-50px);
-          transform: translateY(-50px);
-}
-.ngtoast-multi.ngtoast-open div:first-child {
-  opacity: 1;
-}
-.ngtoast-multi.ngtoast-open div:nth-child(2) {
-  opacity: 1;
-}
-.ngtoast-multi.ngtoast-open div:nth-child(3) {
-  opacity: 1;
-}
-.ngtoast-multi.ngtoast-closing div:first-child {
-  opacity: 0;
-  -webkit-transition: all 0.3s ease 0.2s;
-          transition: all 0.3s ease 0.2s;
-}
-.ngtoast-multi.ngtoast-closing div:nth-child(2) {
-  opacity: 0;
-  -webkit-transition: all 0.3s ease 0.1s;
-          transition: all 0.3s ease 0.1s;
-}
-.ngtoast-multi.ngtoast-closing div:nth-child(3) {
-  opacity: 0;
-  -webkit-transition: all 0.3s ease;
-          transition: all 0.3s ease;
-}
-@-webkit-keyframes lifemeter-anim {
-  0% {
-    width: 100px;
-  }
-  99.9% {
-    width: 0;
-  }
-}
-@keyframes lifemeter-anim {
-  0% {
-    width: 100px;
-  }
-  99.9% {
-    width: 0;
-  }
 }

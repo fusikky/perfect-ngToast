@@ -1,0 +1,63 @@
+html
+  head
+    meta(charset="utf-8")
+    title perfect-ngToast Animation
+    link(rel="stylesheet", href="../dist/css/ngToast.css")
+    link(rel="stylesheet", href="../dist/css/ngToast-theme-default.css")
+    link(rel="stylesheet", href="../dist/css/ngToast-theme-fly.css")
+    link(rel="stylesheet", href="../dist/css/ngToast-theme-custom.css")
+    link(rel="stylesheet", href="../dist/css/sample.css")
+
+  body
+    div(ng-app="app")
+      h1 perfect-ngToast Animations
+      div(ng-controller="ngToastCtrl").btn-area
+        div
+          button(ng-click="openDefault()") Default 
+          button(ng-click="openWithClass('ngtoast-fly')") Fly
+          button(ng-click="openWithClass('ngtoast-notice')") Notice
+
+        div
+          button(ng-click="openWithClass('toast-emerge')") Emerge
+          button(ng-click="openWithClass('toast-appeal')") Appeal
+          button(ng-click="openWithClass('toast-turn')") Turn
+          button(ng-click="openWithClass('toast-expand')") Expand
+          button(ng-click="openWithClass('toast-zoom-expand')") Zoom Expand
+        div
+          button(ng-click="openMulti()") Multi
+          button(ng-click="openMultiHorizontal()") multi-horizontal
+
+    script(src="../bower_components/angular/angular.js")
+    script(src="../dist/js/ngToast.js")
+    script.
+      angular.module('app', ['ngToast']).controller('ngToastCtrl', ['$scope', '$rootScope', '$interval', 'ngToast', function ($scope, $rootScope, $interval,ngToast) {
+
+        $scope.openDefault = function () {
+          ngToast.open({
+            template: '<div><p>Default Toast</p></div>'
+          });
+        };
+
+        $scope.openWithClass = function (className) {
+          ngToast.open({
+            template: '<div class="ngtoast-anim-default"><p>' + className + '</p></div>',
+            className: className,
+            mustUnique: true
+          });
+        };
+
+        $scope.openMulti = function () {
+          ngToast.open({
+            template: '<div class="ngtoast-multi"><div><p>perfect</p></div><div><p>ngToast</p></div><div>!!!</div></div>',
+            mustUnique: true
+          });
+        };
+        $scope.openMultiHorizontal = function () {
+          ngToast.open({
+            template: '<div class="ngtoast-multi"><div>perfect</div><div>ngToast</div><div>!!!</div></div>',
+            className: 'ngtoast-multi-horizontal',
+            mustUnique: true
+          });
+        };
+
+      }]);

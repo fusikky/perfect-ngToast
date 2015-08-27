@@ -1,11 +1,54 @@
 high = 40px
 low = 0px
 
-button
-  display block
-  margin 10px 0
+body
+  background-color #0c0
+  margin 0
+  width 800px
 
-.ngtoast-default
+button
+  appearance none
+  background-color #fff
+  border 1px solid #eee
+  border-radius 5px
+  cursor pointer
+  display inline-block
+  margin 20px
+  outline 0
+  padding 3px 10px
+  width 180px
+  height 30px
+  &:hover
+    background-color #ffd
+
+h1
+  background-color #888
+  color #fff
+  padding 20px
+  text-align center
+  width 100%
+
+.btn-area
+  margin auto
+  transform translateY(250px)
+  text-align center
+
+button
+  appearance none
+  background-color #fff
+  border 1px solid #eee
+  cursor pointer
+  display inline-block
+  margin 20px
+  padding 3px 10px
+  width 200px
+  height  30px
+  &:hover
+    background-color #ffd
+
+.ngtoast-anim-default
+  background-color #fff
+  border 1px solid #eee
   border-radius 10px
   width 200px
   height 50px
@@ -15,117 +58,6 @@ button
   left 0
   margin auto
   padding 10px
-
-.ngtoast-fly
-  &.ngtoast-opening
-    animation ngtoast-flyin 0.3s
-  &.ngtoast-open
-    transform translateY(low)
-    opacity 1
-  &.ngtoast-closing
-    animation ngtoast-flyout 0.5s
-    transform translateX(low)
-
-.ngtoast-notice
-  top 0
-  right 0
-  left auto
-  margin 0
-  transform translateY(low)
-  &.ngtoast-opening
-    animation ngtoast-flyin-right 0.4s
-  &.ngtoast-open
-    opacity 1
-    transform translate(low,high)
-  &.ngtoast-closing
-    animation ngtoast-flyout-top 0.5s
-    transform translateX(low)
-
-.ngtoast-notice--info
-  background-color #ccf
-
-.ngtoast-notice--alert
-  background-color #fcc
-
-@keyframes lifemeter-anim
-  0%
-    width 100px
-  99.9%
-    width 0
-
-.ngtoast-hover
-  background-color #fcc
-  .lifemeter
-    background-color #f00
-    width 100px
-    height 10px
-  &.ngtoast-open
-    .lifemeter
-      animation lifemeter-anim linear 4s
-  &.ngtoast-closing
-    .lifemeter
-      width 0
-  &:hover
-    background-color #cfc
-    cursor pointer
-    .lifemeter
-      width 100px
-      animation none
-
-.ngtoast-multi
-  background-color rgba(255, 255, 255, .0)
-  border none
-  box-shadow none
+  transition all .3s ease-out
   text-align center
-  transform translateY(low)
-  & div
-    border-radius 4px
-    box-shadow 0px 0px 10px 0px rgba(0,0,0,0.4)
-    height 30px
-    margin-bottom 10px
-    &:first-child
-      opacity 0
-      transform translateY(0px)
-      transition all .3s ease 0s
-    &:nth-child(2)
-      opacity 0
-      transform translateY(0px)
-      transition all .3s ease .1s
-    &:nth-child(3)
-      opacity 0
-      transform translateY(0px)
-      transition all .3s ease .2s
-
-  &.ngtoast-opening
-    & div:first-child
-      opacity 1
-      transform translateY(-50px)
-    & div:nth-child(2)
-      opacity 1
-      transform translateY(-50px)
-    & div:nth-child(3)
-      opacity 1
-      transform translateY(-50px)
-
-  &.ngtoast-open
-    & div
-      transform translateY(-50px)
-      &:first-child
-        opacity 1
-      &:nth-child(2)
-        opacity 1
-      &:nth-child(3)
-        opacity 1
-
-  &.ngtoast-closing
-    & div
-      &:first-child
-        opacity 0
-        transition all .3s ease .2s
-      &:nth-child(2)
-        opacity 0
-        transition all .3s ease .1s
-      &:nth-child(3)
-        opacity 0
-        transition all .3s ease
 

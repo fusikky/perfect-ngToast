@@ -53,4 +53,31 @@ low = 0px
     opacity 1
     transform translate(high, high)
 
+.ngtoast-fly
+  opacity 0
+  &.ngtoast-opening
+    animation ngtoast-flyin 0.3s
+  &.ngtoast-open
+    transform translateY(low)
+    opacity 1
+  &.ngtoast-closing
+    animation ngtoast-flyout 0.5s
+    transform translateX(low)
+
+.ngtoast-notice
+  position fixed
+  top 0
+  right 0
+  left auto
+  margin 0
+  opacity 0
+  transform translateY(low)
+  &.ngtoast-opening
+    animation ngtoast-flyin-right 0.4s
+  &.ngtoast-open
+    opacity 1
+    transform translate(low,high)
+  &.ngtoast-closing
+    animation ngtoast-flyout-top 0.5s
+    transform translateX(low)
 
